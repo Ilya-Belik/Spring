@@ -1,6 +1,5 @@
 package spring.service;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring.DAO.UserDAO;
@@ -10,7 +9,7 @@ import java.util.List;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
-    @Autowired
+    @Inject
     private UserDAO userDAO;
     @Override
     public List<User> getAllUsers() {
