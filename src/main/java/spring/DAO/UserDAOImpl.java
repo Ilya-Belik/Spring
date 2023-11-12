@@ -1,16 +1,12 @@
 package spring.DAO;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import spring.Model.User;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-    @Autowired
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -24,7 +20,7 @@ public class UserDAOImpl implements UserDAO {
         if (user.getId() == 0) {
             entityManager.persist(user);
         } else {
-            entityManager.merge(user);
+            updateUser(user);
         }
     }
 
@@ -40,5 +36,9 @@ public class UserDAOImpl implements UserDAO {
         if(user!= null){
             entityManager.remove(user);
         }
+    }
+    @Override
+    public void updateUser(User user) {
+        entityManager.merge(user);
     }
 }
