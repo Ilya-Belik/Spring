@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th>Sex</th>
+        <th>Operations</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${allUsers}">
+
+        <script>
+            function redirectToPage(userId) {
+                window.location.href = '/updateInfo?userId=' + userId;
+            }
+        </script>
+        <script>
+            function redirectToPage2(userId) {
+                window.location.href = '/deleteUser?userId=' + userId;
+            }
+        </script>
+
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.surname}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.sex}"></td>
+        <td>
+            <button th:attr="onclick='redirectToPage(\'' + ${user.id} + '\')'">Update</button>
+
+        </td>
+        <td>
+            <button th:attr="onclick='redirectToPage2(\'' + ${user.id} + '\')'">Delete</button>
+
+        </td>
+    </tr>
+
+
+    </tbody>
+</table>
+
+<br>
+<button onclick="redirectTo()">Add User</button>
+
+<script>
+    function redirectTo() {
+        window.location.href = '/addNewUser';
+    }
+</script>
+</body>
+</html>
